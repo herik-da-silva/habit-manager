@@ -31,9 +31,7 @@ public class HabitService {
 
         habit.setNome(habitDetails.getNome());
         habit.setDescricao(habitDetails.getDescricao());
-        habit.setDataInicial(habitDetails.getDataInicial());
-        habit.setDataFinal(habitDetails.getDataFinal());
-        habit.setCompleto(habitDetails.isCompleto());
+        habit.setDiasDaSemana(habitDetails.getDiasDaSemana());
 
         return habitRepository.save(habit);
     }

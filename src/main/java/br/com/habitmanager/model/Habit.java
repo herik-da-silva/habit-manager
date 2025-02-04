@@ -1,11 +1,15 @@
 package br.com.habitmanager.model;
 
+import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-import java.time.LocalDate;
+import java.util.Set;
+import java.util.HashSet;
 
 @Entity
 public class Habit {
@@ -16,9 +20,10 @@ public class Habit {
 
     private String nome;
     private String descricao;
-    private LocalDate dataInicial;
-    private LocalDate dataFinal;
-    private boolean completo;
+
+    @ElementCollection
+    @Enumerated(EnumType.STRING) // TODO Estudar isso
+    private Set<DayOfWeek> diasDaSemana = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -44,27 +49,11 @@ public class Habit {
         this.descricao = descricao;
     }
 
-    public LocalDate getDataInicial() {
-        return dataInicial;
+    public Set<DayOfWeek> getDiasDaSemana() {
+        return diasDaSemana;
     }
 
-    public void setDataInicial(LocalDate dataInicial) {
-        this.dataInicial = dataInicial;
-    }
-
-    public LocalDate getDataFinal() {
-        return dataFinal;
-    }
-
-    public void setDataFinal(LocalDate dataFinal) {
-        this.dataFinal = dataFinal;
-    }
-
-    public boolean isCompleto() {
-        return completo;
-    }
-
-    public void setCompleto(boolean completo) {
-        this.completo = completo;
+    public void setDiasDaSemana(Set<DayOfWeek> diasDaSemana) {
+        this.diasDaSemana = diasDaSemana;
     }
 }
